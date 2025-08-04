@@ -13,6 +13,7 @@ export default defineConfig({
       includeProps: true,
     })
   ],
+  base: './', // Usar rutas relativas en lugar de absolutas
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

@@ -17,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ onQRClick }) => {
           {/* QR Code */}
           <div className="cursor-pointer hover-scale" onClick={onQRClick}>
             <img 
-              src="/qr-code.jpg" 
+              src="./qr-code.jpg" 
               alt="Código QR para contactar a Álvaro Vera" 
               className="w-10 h-10 lg:w-12 lg:h-12"
             />

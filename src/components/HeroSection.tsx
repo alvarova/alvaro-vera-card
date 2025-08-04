@@ -46,7 +46,7 @@ const HeroSection: React.FC = () => {
           <div className="order-1 lg:order-2 flex justify-center lg:justify-end">
             <div className="hero-image" style={{ opacity: 1 }}>
               <img 
-                src="/perfil.jpg" 
+                src="./perfil.jpg" 
                 alt="Foto de perfil de Álvaro Vera" 
                 className="w-64 h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-full object-cover border-4 border-primary-black shadow-2xl"
               />

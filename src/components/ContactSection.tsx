@@ -1,7 +1,59 @@
-import React from 'react'
-import { Mail, Phone, MapPin, Linkedin } from 'lucide-react'
+import React, { useEffect, useRef, useState } from 'react'
+import { Mail, Phone, MapPin, Linkedin, MessageSquare, Phone as PhoneIcon } from 'lucide-react'
 
 const ContactSection: React.FC = () => {
+  const whatsappButtonRef = useRef<HTMLAnchorElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Función para activar la animación de sacudida
+  const triggerShakeAnimation = () => {
+    if (whatsappButtonRef.current && !isVisible) {
+      setIsVisible(true);
+      whatsappButtonRef.current.classList.add('shake-animation-repeat');
+      
+      // Eliminar la clase después de que termine la animación para permitir que se repita
+      const animationDuration = 0.8 * 3 * 1000; // 0.8s por animación * 3 repeticiones
+      setTimeout(() => {
+        if (whatsappButtonRef.current) {
+          whatsappButtonRef.current.classList.remove('shake-animation-repeat');
+          setIsVisible(false);
+        }
+      }, animationDuration);
+    }
+  };
+
+  // Efecto para activar la animación cuando el componente se monta
+  useEffect(() => {
+    // Pequeño retraso para asegurar que el componente esté completamente renderizado
+    const initialTimeout = setTimeout(() => {
+      triggerShakeAnimation();
+    }, 1000);
+
+    return () => clearTimeout(initialTimeout);
+  }, []);
+
+  // Efecto para observar cuando el botón entra en la vista
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !isVisible) {
+          triggerShakeAnimation();
+        }
+      },
+      { threshold: 0.1 } // Activar cuando al menos el 10% del elemento sea visible
+    );
+
+    if (whatsappButtonRef.current) {
+      observer.observe(whatsappButtonRef.current);
+    }
+
+    return () => {
+      if (whatsappButtonRef.current) {
+        observer.unobserve(whatsappButtonRef.current);
+      }
+    };
+  }, [isVisible]);
+
   return (
     <section className="animate-section py-20 lg:py-32 bg-primary-white">
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
@@ -109,6 +161,17 @@ const ContactSection: React.FC = () => {
               >
                 <Phone size={20} />
                 LLAMAR
+              </a>
+              <a 
+                ref={whatsappButtonRef}
+                href="https://wa.me/543425974002" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-3 bg-[#25D366] text-primary-white px-8 py-4 font-semibold uppercase tracking-wide hover:bg-[#128C7E] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#25D366] focus:ring-offset-2 shadow-lg hover:shadow-xl"
+                style={{ willChange: 'transform' }}
+              >
+                <PhoneIcon size={20} />
+                WHATSAPP
               </a>
             </div>
           </div>

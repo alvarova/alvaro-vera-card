@@ -102,7 +102,7 @@ const QRModal: React.FC<QRModalProps> = ({ isOpen, onClose }) => {
           {/* QR Code ampliado */}
           <div className="flex justify-center mb-6">
             <img 
-              src="/qr-code.jpg" 
+              src="./qr-code.jpg" 
               alt="Código QR para acceder a la tarjeta de presentación de Álvaro Vera" 
               className="w-48 h-48 lg:w-56 lg:h-56 border-2 border-gray-200 rounded-lg"
             />

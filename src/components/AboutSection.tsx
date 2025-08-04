@@ -17,7 +17,7 @@ const AboutSection: React.FC = () => {
           <div className="order-2 lg:order-1 flex justify-center lg:justify-start">
             <div className="relative">
               <img 
-                src="/perfil2.jpg" 
+                src="./perfil2.jpg" 
                 alt="Álvaro Vera - Desarrollador Frontend" 
                 className="w-64 h-64 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-primary-black shadow-xl"
               />
